@@ -73,15 +73,47 @@ class NewDrawView: UIView {
         addSidePoints(forPoint: midPoint, startPoint: prePoint, endPoint: lasPoint, width: oriPoints[count - 2].width)
 
         if isLastPoint {
-            addSidePoints(forPoint: midPoint, startPoint: midPoint, endPoint: lasPoint, width: oriPoints[count - 2].width)
+            addSidePoints(forPoint: lasPoint, startPoint: midPoint, endPoint: lasPoint, width: oriPoints[count - 2].width)
         }
     }
 
     func addSidePoints(forPoint point: CGPoint, startPoint: CGPoint, endPoint: CGPoint, width: CGFloat) {
-        let vector = CGPoint(x: endPoint.x - startPoint.x, y: endPoint.y - startPoint.y)
-        let line = lineSegmentPerpendicularTo(vector, ofLength: width, midPoint: point)
-        sidePoints1.append(line.start)
-        sidePoints2.append(line.end)
+        let point1: CGPoint
+        let point2: CGPoint
+
+        var vector1 = CGPoint(x: startPoint.x - point.x, y: startPoint.y - point.y)
+        var vector2 = CGPoint(x: endPoint.x - point.x, y: endPoint.y - point.y)
+        if vector1 != CGPoint.zero {
+            let dis = sqrt(vector1.x * vector1.x + vector1.y * vector1.y)
+            vector1 = CGPoint(x: vector1.x / dis, y: vector1.y / dis)
+        }
+
+        if vector2 != CGPoint.zero {
+            let dis = sqrt(vector2.x * vector2.x + vector2.y * vector2.y)
+            vector2 = CGPoint(x: vector2.x / dis, y: vector2.y / dis)
+        }
+
+        let vector3 = CGPoint(x: vector1.x + vector2.x, y: vector1.y + vector2.y)
+        let f: CGFloat = 1
+        if vector3.y == 0 {
+            point1 = CGPoint(x: point.x + f * width / 2, y: point.y)
+            point2 = CGPoint(x: point.x - f * width / 2, y: point.y)
+        } else {
+            let k = vector3.x / vector3.y
+            let dis = sqrt( 1 + k * k)
+            point1 = CGPoint(x: point.x + f * width / 2 * k / dis, y: point.y + f * width / 2 / dis)
+            point2 = CGPoint(x: point.x - f * width / 2 * k / dis, y: point.y - f * width / 2 / dis)
+        }
+
+        let vector5 = CGPoint(x: startPoint.x - point1.x, y: startPoint.y - point1.y)
+        let isLeft = vector5.x * vector1.y - vector5.y * vector1.x > 0
+        if isLeft {
+            sidePoints1.append(point1)
+            sidePoints2.append(point2)
+        } else {
+            sidePoints1.append(point2)
+            sidePoints2.append(point1)
+        }
     }
 
 
@@ -137,11 +169,25 @@ class NewDrawView: UIView {
         }
         sidePath1.closePath()
         sidePath1.lineWidth = 1
-
-//        sidePath2.lineWidth = 1
         UIColor.blueColor().setFill()
         UIColor.blueColor().setStroke()
         sidePath1.fill()
+
+
+
+//        sidePath2.stroke()
+//        let sidePath2 = UIBezierPath()
+//        for (index, point) in sidePoints2.enumerate() {
+//            if index == 0 {
+//                sidePath2.moveToPoint(point)
+//            } else {
+//                let lastPoint = sidePoints2[index - 1]
+//                let midPoint = CGPoint(x: (point.x + lastPoint.x) / 2, y: (point.y + lastPoint.y) / 2)
+//                sidePath2.addQuadCurveToPoint(midPoint, controlPoint: lastPoint)
+//            }
+//        }
+//        UIColor.blueColor().setFill()
+//        UIColor.redColor().setStroke()
 //        sidePath2.stroke()
 
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		207C588B1D5352FB0084BE93 /* StrokeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207C588A1D5352FB0084BE93 /* StrokeView.swift */; };
 		20E6AEC31D4F33D500ECB002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E6AEC21D4F33D500ECB002 /* AppDelegate.swift */; };
 		20E6AEC51D4F33D500ECB002 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E6AEC41D4F33D500ECB002 /* ViewController.swift */; };
 		20E6AEC81D4F33D500ECB002 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20E6AEC61D4F33D500ECB002 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		207C588A1D5352FB0084BE93 /* StrokeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrokeView.swift; sourceTree = "<group>"; };
 		20E6AEBF1D4F33D500ECB002 /* newDraw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = newDraw.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20E6AEC21D4F33D500ECB002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20E6AEC41D4F33D500ECB002 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				20E6AEC21D4F33D500ECB002 /* AppDelegate.swift */,
 				20E6AEC41D4F33D500ECB002 /* ViewController.swift */,
 				20E6AED41D4F33F000ECB002 /* NewDrawView.swift */,
+				207C588A1D5352FB0084BE93 /* StrokeView.swift */,
 				20E6AEC61D4F33D500ECB002 /* Main.storyboard */,
 				20E6AEC91D4F33D500ECB002 /* Assets.xcassets */,
 				20E6AECB1D4F33D500ECB002 /* LaunchScreen.storyboard */,
@@ -140,6 +143,7 @@
 			files = (
 				20E6AEC51D4F33D500ECB002 /* ViewController.swift in Sources */,
 				20E6AEC31D4F33D500ECB002 /* AppDelegate.swift in Sources */,
+				207C588B1D5352FB0084BE93 /* StrokeView.swift in Sources */,
 				20E6AED51D4F33F000ECB002 /* NewDrawView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,6 +296,7 @@
 				20E6AED31D4F33D500ECB002 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

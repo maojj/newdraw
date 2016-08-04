@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol DrawDelegate: class {
+    func drawView(view:NewDrawView, didFinishPath path: UIBezierPath)
+}
+
 struct WidthPoint {
     let point: CGPoint
     let width: CGFloat
@@ -19,41 +23,88 @@ struct LineSegment {
 }
 
 class NewDrawView: UIView {
+    weak var delgate: DrawDelegate?
     var oriPoints: [WidthPoint] = []
     var sidePoints1: [CGPoint] = []
     var sidePoints2: [CGPoint] = []
+    var finishedStrokes: [UIBezierPath] = []
+    var tempPath: UIBezierPath?
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        clear()
         let touch = touches.first!
+        guard touch.type == .Stylus else { return }
+        clear()
         addTouch(touch, isLastPoint: false)
     }
 
 
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first!
+        guard touch.type == .Stylus else { return }
         addTouch(touch, isLastPoint: false)
-
     }
 
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first!
+
+        guard touch.type == .Stylus else { return }
         addTouch(touch, isLastPoint: true)
 
     }
 
     func addTouch(touch: UITouch, isLastPoint: Bool) {
+
         NSLog("force: \(touch.force)")
         let point = touch.locationInView(self)
         let prePoint = touch.previousLocationInView(self)
         let dx = point.x - prePoint.x
         let dy = point.y - prePoint.y
         let dis = sqrt(dx * dx + dy * dy)
-        let widh: CGFloat = dis == 0 ? 1 :  sqrt(dis)  // 1 : max(min(5, 40 / dis), 0.1)
-        let widthPoint = WidthPoint(point: touch.locationInView(self), width: widh)
+        var width: CGFloat = dis == 0 ? 1 :  sqrt(dis)  // 1 : max(min(5, 40 / dis), 0.1)
+        width = (touch.force + 1) * (touch.force + 1) / 2
+        let widthPoint = WidthPoint(point: touch.locationInView(self), width: width )
         oriPoints.append(widthPoint)
         caculateSidePoints(isLastPoint)
+        let path = getTEmpPath()
+        if isLastPoint {
+            tempPath = nil
+//            finishedStrokes.append(path)
+            delgate?.drawView(self, didFinishPath: path)
+        } else {
+            tempPath = path
+        }
         setNeedsDisplay()
+    }
+
+    func getTEmpPath() -> UIBezierPath {
+        let sidePath1 = UIBezierPath()
+        for (index, point) in sidePoints1.enumerate() {
+            if index == 0 {
+                continue
+            }
+            if index == 1 {
+                sidePath1.moveToPoint(point)
+            } else {
+                let lastPoint = sidePoints1[index - 1]
+                let midPoint = CGPoint(x: (point.x + lastPoint.x) / 2, y: (point.y + lastPoint.y) / 2)
+                sidePath1.addQuadCurveToPoint(midPoint, controlPoint: lastPoint)
+            }
+        }
+
+
+        for (index, point) in sidePoints2.enumerate().reverse() {
+            if index == sidePoints2.count - 1 {
+                sidePath1.addLineToPoint(point)
+            } else {
+                let lastPoint = sidePoints2[index + 1]
+                let midPoint = CGPoint(x: (point.x + lastPoint.x) / 2, y: (point.y + lastPoint.y) / 2)
+                sidePath1.addQuadCurveToPoint(midPoint, controlPoint: lastPoint)
+            }
+        }
+        sidePath1.closePath()
+        sidePath1.lineWidth = 1
+
+        return sidePath1
     }
 
     func caculateSidePoints(isLastPoint: Bool)  {
@@ -94,15 +145,15 @@ class NewDrawView: UIView {
         }
 
         let vector3 = CGPoint(x: vector1.x + vector2.x, y: vector1.y + vector2.y)
-        let f: CGFloat = 1
         if vector3.y == 0 {
-            point1 = CGPoint(x: point.x + f * width / 2, y: point.y)
-            point2 = CGPoint(x: point.x - f * width / 2, y: point.y)
+            point1 = CGPoint(x: point.x + width / 2, y: point.y)
+            point2 = CGPoint(x: point.x - width / 2, y: point.y)
         } else {
             let k = vector3.x / vector3.y
             let dis = sqrt( 1 + k * k)
-            point1 = CGPoint(x: point.x + f * width / 2 * k / dis, y: point.y + f * width / 2 / dis)
-            point2 = CGPoint(x: point.x - f * width / 2 * k / dis, y: point.y - f * width / 2 / dis)
+            let delta = width / 2 / dis
+            point1 = CGPoint(x: point.x + k * delta, y: point.y + delta)
+            point2 = CGPoint(x: point.x - k * delta, y: point.y - delta)
         }
 
         let vector5 = CGPoint(x: startPoint.x - point1.x, y: startPoint.y - point1.y)
@@ -142,39 +193,15 @@ class NewDrawView: UIView {
 
         guard sidePoints1.count > 1 else { return }
 
-
-        let sidePath1 = UIBezierPath()
-        for (index, point) in sidePoints1.enumerate() {
-            if index == 0 {
-                continue
-            }
-            if index == 1 {
-                sidePath1.moveToPoint(point)
-            } else {
-                let lastPoint = sidePoints1[index - 1]
-                let midPoint = CGPoint(x: (point.x + lastPoint.x) / 2, y: (point.y + lastPoint.y) / 2)
-                sidePath1.addQuadCurveToPoint(midPoint, controlPoint: lastPoint)
-            }
-        }
-
-
-        for (index, point) in sidePoints2.enumerate().reverse() {
-            if index == sidePoints2.count - 1 {
-                sidePath1.addLineToPoint(point)
-            } else {
-                let lastPoint = sidePoints2[index + 1]
-                let midPoint = CGPoint(x: (point.x + lastPoint.x) / 2, y: (point.y + lastPoint.y) / 2)
-                sidePath1.addQuadCurveToPoint(midPoint, controlPoint: lastPoint)
-            }
-        }
-        sidePath1.closePath()
-        sidePath1.lineWidth = 1
         UIColor.blueColor().setFill()
-        UIColor.blueColor().setStroke()
-        sidePath1.fill()
+//        finishedStrokes.forEach { (path) in
+//            path.fill()
+//        }
+
+        tempPath?.fill()
 
 
-
+//        UIColor.blueColor().setStroke()
 //        sidePath2.stroke()
 //        let sidePath2 = UIBezierPath()
 //        for (index, point) in sidePoints2.enumerate() {
@@ -196,6 +223,12 @@ class NewDrawView: UIView {
         oriPoints.removeAll()
         sidePoints1.removeAll()
         sidePoints2.removeAll()
+    }
+
+    func clearAll() {
+        clear()
+        finishedStrokes.removeAll()
+        setNeedsDisplay()
     }
 
 }

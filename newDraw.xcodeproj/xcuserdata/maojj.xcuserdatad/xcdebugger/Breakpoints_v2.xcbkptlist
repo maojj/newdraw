@@ -9,29 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "newDraw/NewDrawView.swift"
-            timestampString = "491733861.963342"
+            filePath = "newDraw/StrokeView.swift"
+            timestampString = "492000743.855622"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "addTouch(_:isLastPoint:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "newDraw/NewDrawView.swift"
-            timestampString = "491825914.169333"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "lineSegmentPerpendicularTo(_:ofLength:midPoint:)"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "appendPath(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

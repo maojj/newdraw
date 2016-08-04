@@ -17,19 +17,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WI3-wT-6LK" customClass="NewDrawView" customModule="newDraw" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Yi-Iu-1x7" customClass="StrokeView" customModule="newDraw" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WI3-wT-6LK" customClass="NewDrawView" customModule="newDraw" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZW-zd-9qG">
+                                <rect key="frame" x="283" y="30" width="34" height="30"/>
+                                <state key="normal" title="clear"/>
+                                <connections>
+                                    <action selector="clearPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g2S-oU-gYG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="WI3-wT-6LK" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="3Ab-Wc-Up6"/>
+                            <constraint firstItem="4Yi-Iu-1x7" firstAttribute="centerY" secondItem="WI3-wT-6LK" secondAttribute="centerY" id="Jr6-L0-Ye4"/>
+                            <constraint firstItem="NZW-zd-9qG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="K4y-vM-oKQ"/>
                             <constraint firstItem="WI3-wT-6LK" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="SDd-lQ-p3g"/>
+                            <constraint firstItem="4Yi-Iu-1x7" firstAttribute="width" secondItem="WI3-wT-6LK" secondAttribute="width" id="V1O-J0-ZQD"/>
                             <constraint firstItem="WI3-wT-6LK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cAV-im-LcA"/>
                             <constraint firstItem="WI3-wT-6LK" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="hIb-V6-gNt"/>
+                            <constraint firstItem="NZW-zd-9qG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="n3j-OU-fMf"/>
+                            <constraint firstItem="4Yi-Iu-1x7" firstAttribute="centerX" secondItem="WI3-wT-6LK" secondAttribute="centerX" id="psL-hy-C5O"/>
+                            <constraint firstItem="4Yi-Iu-1x7" firstAttribute="height" secondItem="WI3-wT-6LK" secondAttribute="height" id="uFB-wO-u8b"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="drawView" destination="WI3-wT-6LK" id="X0i-QM-54i"/>
+                        <outlet property="strokeView" destination="4Yi-Iu-1x7" id="ep5-FW-rih"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

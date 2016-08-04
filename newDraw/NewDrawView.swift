@@ -30,6 +30,8 @@ class NewDrawView: UIView {
     var finishedStrokes: [UIBezierPath] = []
     var tempPath: UIBezierPath?
 
+    var widthRation: CGFloat = 1
+
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first!
         guard touch.type == .Stylus else { return }
@@ -61,7 +63,10 @@ class NewDrawView: UIView {
         let dy = point.y - prePoint.y
         let dis = sqrt(dx * dx + dy * dy)
         var width: CGFloat = dis == 0 ? 1 :  sqrt(dis)  // 1 : max(min(5, 40 / dis), 0.1)
-        width = (touch.force + 1) * (touch.force + 1) / 2
+//        width = (touch.force + 1) * (touch.force + 1) / 2
+//        width = sqrt(touch.force + 1) * 2
+        width = (touch.force + 1) * widthRation
+
         let widthPoint = WidthPoint(point: touch.locationInView(self), width: width )
         oriPoints.append(widthPoint)
         caculateSidePoints(isLastPoint)

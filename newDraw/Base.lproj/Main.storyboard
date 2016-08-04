@@ -23,7 +23,22 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WI3-wT-6LK" customClass="NewDrawView" customModule="newDraw" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.5" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="ItW-Wg-eBq">
+                                        <rect key="frame" x="362" y="27" width="199" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="195" id="hpc-w3-zpq"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="sliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="n87-sQ-1fm"/>
+                                        </connections>
+                                    </slider>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="ItW-Wg-eBq" firstAttribute="top" secondItem="WI3-wT-6LK" secondAttribute="top" constant="27" id="69T-iu-yBW"/>
+                                    <constraint firstAttribute="trailing" secondItem="ItW-Wg-eBq" secondAttribute="trailing" constant="41" id="nEJ-QM-lvM"/>
+                                </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZW-zd-9qG">
                                 <rect key="frame" x="283" y="30" width="34" height="30"/>
@@ -54,6 +69,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="140" y="230"/>
         </scene>
     </scenes>
 </document>

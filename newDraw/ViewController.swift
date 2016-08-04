@@ -18,6 +18,9 @@ class ViewController: UIViewController, DrawDelegate {
         drawView.delgate = self
     }
 
+    @IBAction func sliderValueChanged(sender: UISlider) {
+        drawView.widthRation = CGFloat(sender.value)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

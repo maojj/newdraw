@@ -18,8 +18,10 @@ class ViewController: UIViewController, DrawDelegate {
         drawView.delgate = self
     }
 
+    @IBOutlet weak var label: UILabel!
     @IBAction func sliderValueChanged(sender: UISlider) {
         drawView.widthRation = CGFloat(sender.value)
+        label.text = "\(sender.value)"
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

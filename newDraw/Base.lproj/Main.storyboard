@@ -21,32 +21,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WI3-wT-6LK" customClass="NewDrawView" customModule="newDraw" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WI3-wT-6LK" customClass="HandDrawView" customModule="newDraw" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <subviews>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.5" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="ItW-Wg-eBq">
-                                        <rect key="frame" x="362" y="27" width="199" height="31"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="195" id="hpc-w3-zpq"/>
-                                        </constraints>
-                                        <connections>
-                                            <action selector="sliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="n87-sQ-1fm"/>
-                                        </connections>
-                                    </slider>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BE2-4j-tcj">
-                                        <rect key="frame" x="353" y="31" width="8" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="ItW-Wg-eBq" firstAttribute="top" secondItem="WI3-wT-6LK" secondAttribute="top" constant="27" id="69T-iu-yBW"/>
-                                    <constraint firstItem="BE2-4j-tcj" firstAttribute="centerY" secondItem="ItW-Wg-eBq" secondAttribute="centerY" id="DNZ-Gf-410"/>
-                                    <constraint firstItem="ItW-Wg-eBq" firstAttribute="leading" secondItem="BE2-4j-tcj" secondAttribute="trailing" constant="3" id="k0n-47-jVi"/>
-                                    <constraint firstAttribute="trailing" secondItem="ItW-Wg-eBq" secondAttribute="trailing" constant="41" id="nEJ-QM-lvM"/>
-                                </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZW-zd-9qG">
                                 <rect key="frame" x="283" y="30" width="34" height="30"/>
@@ -72,7 +49,6 @@
                     </view>
                     <connections>
                         <outlet property="drawView" destination="WI3-wT-6LK" id="X0i-QM-54i"/>
-                        <outlet property="label" destination="BE2-4j-tcj" id="T3K-Xe-3ZY"/>
                         <outlet property="strokeView" destination="4Yi-Iu-1x7" id="ep5-FW-rih"/>
                     </connections>
                 </viewController>

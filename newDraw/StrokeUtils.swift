@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class StrokeUtils {
 
@@ -95,10 +96,22 @@ class StrokeUtils {
     ///  - parameter strokeWidth: standard stroke width
     ///
     ///  - returns: path to be fill in view
-    static func fillPathForStroke(stroke: TTLLStrokeCmd, viewWidth: CGFloat,
+//    static func fillPathForStroke(stroke: TTLLStrokeCmd, viewWidth: CGFloat,
+//                                  viewHeight: CGFloat, strokeWidth: CGFloat) -> UIBezierPath? {
+//
+//        let widthPoints = stroke.penPoint.map { (point) -> WidthPoint in
+//            let x = point.x * viewWidth
+//            let y = point.y * viewHeight
+//            let width = point.width > 0 ? point.width * strokeWidth : strokeWidth
+//            return WidthPoint(x: x, y: y, width: width)
+//        }
+//        return fillPathForWidthPoints(widthPoints)
+//    }
+
+    static func fillPathForPoints(widthPoints: [WidthPoint], viewWidth: CGFloat,
                                   viewHeight: CGFloat, strokeWidth: CGFloat) -> UIBezierPath? {
 
-        let widthPoints = stroke.penPoint.map { (point) -> WidthPoint in
+        let widthPoints = widthPoints.map { (point) -> WidthPoint in
             let x = point.x * viewWidth
             let y = point.y * viewHeight
             let width = point.width > 0 ? point.width * strokeWidth : strokeWidth
@@ -106,6 +119,7 @@ class StrokeUtils {
         }
         return fillPathForWidthPoints(widthPoints)
     }
+
 
     static func fillPathForWidthPoints(widthPoints: [WidthPoint] ) -> UIBezierPath? {
         guard widthPoints.count > 0 else { return nil }

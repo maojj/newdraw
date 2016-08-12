@@ -8,33 +8,35 @@
 
 import UIKit
 
-class ViewController: UIViewController, DrawDelegate {
+class ViewController: UIViewController, HandDrawViewDelegate {
 
     @IBOutlet weak var strokeView: StrokeView!
-    @IBOutlet weak var drawView: NewDrawView!
+    @IBOutlet weak var drawView: HandDrawView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        drawView.userInteractionEnabled = true
         drawView.backgroundColor = .clearColor()
-        drawView.delgate = self
-    }
-
-    @IBOutlet weak var label: UILabel!
-    @IBAction func sliderValueChanged(sender: UISlider) {
-        drawView.widthRation = CGFloat(sender.value)
-        label.text = "\(sender.value)"
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        drawView.delegate = self
     }
 
     @IBAction func clearPressed(sender: AnyObject) {
-        drawView.clearAll()
+        drawView.clear()
         strokeView.clear()
     }
 
-    func drawView(view: NewDrawView, didFinishPath path: UIBezierPath) {
-        strokeView.appendPath(path)
+    func handDrawViewStartSendRealTimeStrokeHeader(view: HandDrawView) {
+
+    }
+
+    func handDrawView(viwe: HandDrawView, willSendRealTimePoints widthPoints: [WidthPoint]) {
+
+    }
+
+    func handDrawView(view: HandDrawView, strokeEndedWithPoints widthPoints: [WidthPoint]) {
+        if let path = StrokeUtils.fillPathForPoints(widthPoints, viewWidth: view.frame.width,
+                                                    viewHeight: view.frame.height, strokeWidth: 1.5) {
+            strokeView.appendPath(path)
+        }
     }
 }
 

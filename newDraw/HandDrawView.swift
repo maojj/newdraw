@@ -1,6 +1,6 @@
 //
-//  NewDrawView.swift
-//  newDraw
+//  HandDrawView.swift
+//  HandDrawView
 //
 //  Created by maojj on 8/1/16.
 //  Copyright © 2016 yuanfudao. All rights reserved.
@@ -15,29 +15,27 @@ protocol HandDrawViewDelegate: class {
 }
 
 struct WidthPoint {
-    let point: CGPoint
-    let width: CGFloat
-}
+    var x: CGFloat
+    var y: CGFloat
+    var width: CGFloat
 
-struct LineSegment {
-    let firstPoint: WidthPoint
-    let secondPoint: WidthPoint
+    var point: CGPoint {
+        get {
+            return CGPoint(x: x, y: y)
+        }
+    }
+
+    init(x: CGFloat, y: CGFloat, width: CGFloat = -1) {
+        self.x = x
+        self.y = y
+        self.width = width
+    }
 }
 
 class HandDrawView: UIView {
     weak var delegate: HandDrawViewDelegate?
     var strokeColor: UIColor = .blueColor()
     var lineWidth: CGFloat = 1.5
-
-    init(lineWidth: CGFloat) {
-        self.lineWidth = lineWidth
-        super.init(frame: CGRect.zero)
-        multipleTouchEnabled = true
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     private var fillPath = UIBezierPath()
     private var strokePoints: [WidthPoint] = []
@@ -83,11 +81,9 @@ class HandDrawView: UIView {
         case .Direct, .Indirect:
             if touchType == .Stylus {
                 // ignore fingure when have an stylus stroke
-                GLog.debug("ignore finger when have stylus stroke")
                 return
             } else {
                 if !strokePoints.isEmpty {
-                    GLog.debug("ingore finer when have another finger stroke")
                     return
                 } else {
                     addTouch(touch)
@@ -111,7 +107,6 @@ class HandDrawView: UIView {
         case .Direct, .Indirect:
             if touchType == .Stylus {
                 // ignore fingure when have an stylus stroke
-                GLog.debug("ignore finger when have stylus stroke")
                 return
             } else {
                 addTouch(touch)
@@ -134,7 +129,6 @@ class HandDrawView: UIView {
         case .Direct, .Indirect:
             if touchType == .Stylus {
                 // ignore fingure when have an stylus stroke
-                GLog.debug("ignore finger when have stylus stroke")
                 return
             } else {
                 addTouch(touch)
@@ -179,9 +173,9 @@ class HandDrawView: UIView {
     }
 
     private func addPoint(point: WidthPoint) {
-        if !shouldAddPoint(point) {
-            return
-        }
+//        if !shouldAddPoint(point) {
+//            return
+//        }
 
         if strokePoints.isEmpty {
             delegate?.handDrawViewStartSendRealTimeStrokeHeader(self)
@@ -202,8 +196,8 @@ class HandDrawView: UIView {
 
     private func shouldAddPoint(point: WidthPoint) -> Bool {
         if let lastPoint = strokePoints.last {
-            let vector: CGPoint = point.point - lastPoint.point
-            let dis = vector.length()
+            let vector: CGPoint = CGPoint(x: point.point.x - lastPoint.point.x, y: point.point.y - lastPoint.point.y)
+            let dis = sqrt(vector.x * vector.x + vector.y + vector.y)
             return dis > lineWidth
         } else {
             return true

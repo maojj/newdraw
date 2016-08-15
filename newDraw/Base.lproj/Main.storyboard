@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,12 +18,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ewE-0S-A7i" customClass="RealTimeStrokeView" customModule="newDraw" customModuleProvider="target">
+                                <rect key="frame" x="20" y="0.0" width="280" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Yi-Iu-1x7" customClass="StrokeView" customModule="newDraw" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="300" y="0.0" width="280" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WI3-wT-6LK" customClass="HandDrawView" customModule="newDraw" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="300" y="0.0" width="280" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZW-zd-9qG">
@@ -35,20 +40,25 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="WI3-wT-6LK" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="3Ab-Wc-Up6"/>
-                            <constraint firstItem="4Yi-Iu-1x7" firstAttribute="centerY" secondItem="WI3-wT-6LK" secondAttribute="centerY" id="Jr6-L0-Ye4"/>
+                            <constraint firstItem="ewE-0S-A7i" firstAttribute="width" secondItem="4Yi-Iu-1x7" secondAttribute="width" id="4uA-cQ-Ama"/>
                             <constraint firstItem="NZW-zd-9qG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="K4y-vM-oKQ"/>
-                            <constraint firstItem="WI3-wT-6LK" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="SDd-lQ-p3g"/>
-                            <constraint firstItem="4Yi-Iu-1x7" firstAttribute="width" secondItem="WI3-wT-6LK" secondAttribute="width" id="V1O-J0-ZQD"/>
-                            <constraint firstItem="WI3-wT-6LK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cAV-im-LcA"/>
-                            <constraint firstItem="WI3-wT-6LK" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="hIb-V6-gNt"/>
+                            <constraint firstItem="4Yi-Iu-1x7" firstAttribute="leading" secondItem="ewE-0S-A7i" secondAttribute="trailing" id="Lg8-x1-ucE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4Yi-Iu-1x7" secondAttribute="trailing" id="MMg-oP-bWb"/>
+                            <constraint firstItem="4Yi-Iu-1x7" firstAttribute="centerY" secondItem="ewE-0S-A7i" secondAttribute="centerY" id="Mz3-KG-woe"/>
+                            <constraint firstItem="4Yi-Iu-1x7" firstAttribute="height" secondItem="WI3-wT-6LK" secondAttribute="height" id="UV1-sS-FrL"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="ewE-0S-A7i" secondAttribute="leading" id="XTG-ta-ikW"/>
+                            <constraint firstItem="ewE-0S-A7i" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="b98-JI-TYf"/>
+                            <constraint firstItem="ewE-0S-A7i" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="jsP-BY-9qX"/>
                             <constraint firstItem="NZW-zd-9qG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="n3j-OU-fMf"/>
-                            <constraint firstItem="4Yi-Iu-1x7" firstAttribute="centerX" secondItem="WI3-wT-6LK" secondAttribute="centerX" id="psL-hy-C5O"/>
-                            <constraint firstItem="4Yi-Iu-1x7" firstAttribute="height" secondItem="WI3-wT-6LK" secondAttribute="height" id="uFB-wO-u8b"/>
+                            <constraint firstItem="4Yi-Iu-1x7" firstAttribute="width" secondItem="WI3-wT-6LK" secondAttribute="width" id="pT6-gL-dly"/>
+                            <constraint firstItem="4Yi-Iu-1x7" firstAttribute="centerX" secondItem="WI3-wT-6LK" secondAttribute="centerX" id="t6Y-wW-XI5"/>
+                            <constraint firstItem="4Yi-Iu-1x7" firstAttribute="centerY" secondItem="WI3-wT-6LK" secondAttribute="centerY" id="ygY-md-c8o"/>
+                            <constraint firstItem="ewE-0S-A7i" firstAttribute="height" secondItem="4Yi-Iu-1x7" secondAttribute="height" id="yhK-ee-SjO"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="drawView" destination="WI3-wT-6LK" id="X0i-QM-54i"/>
+                        <outlet property="realTimeStrokeView" destination="ewE-0S-A7i" id="WoY-E9-BgB"/>
                         <outlet property="strokeView" destination="4Yi-Iu-1x7" id="ep5-FW-rih"/>
                     </connections>
                 </viewController>

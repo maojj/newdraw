@@ -18,6 +18,7 @@ struct WidthPoint {
     var x: CGFloat
     var y: CGFloat
     var width: CGFloat
+    var timestamp: NSTimeInterval
 
     var point: CGPoint {
         get {
@@ -25,10 +26,11 @@ struct WidthPoint {
         }
     }
 
-    init(x: CGFloat, y: CGFloat, width: CGFloat = -1) {
+    init(x: CGFloat, y: CGFloat, width: CGFloat = -1, timestamp: NSTimeInterval) {
         self.x = x
         self.y = y
         self.width = width
+        self.timestamp = timestamp
     }
 }
 
@@ -174,7 +176,8 @@ class HandDrawView: UIView {
         touchType = touch.type
         lastTouchPoint = point
         currentTouchTime = touch.timestamp
-        let widthPoint = WidthPoint(x: point.x, y: point.y, width: widthForTouch(touch))
+        let timestamp = NSDate().timeIntervalSince1970
+        let widthPoint = WidthPoint(x: point.x, y: point.y, width: widthForTouch(touch), timestamp: timestamp)
         addPoint(widthPoint)
     }
 
@@ -223,7 +226,7 @@ class HandDrawView: UIView {
         let viewWidth = frame.size.width
         let viewHeight = frame.size.height
 
-        let relativePoints = points.map { return WidthPoint(x: $0.x / viewWidth, y: $0.y / viewHeight, width: $0.width)
+        let relativePoints = points.map { return WidthPoint(x: $0.x / viewWidth, y: $0.y / viewHeight, width: $0.width, timestamp: $0.timestamp)
         }
         return relativePoints
     }
@@ -256,7 +259,6 @@ class HandDrawView: UIView {
         if isStrokeFinished {
             let width = strokePoints[count - 1].width * lineWidth
             addSidePoints(forPoint: lasPoint, startPoint: midPoint, endPoint: lasPoint, width: width, isLast: true)
-
         }
     }
 

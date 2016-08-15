@@ -12,6 +12,7 @@ class ViewController: UIViewController, HandDrawViewDelegate {
 
     @IBOutlet weak var strokeView: StrokeView!
     @IBOutlet weak var drawView: HandDrawView!
+    @IBOutlet weak var realTimeStrokeView: RealTimeStrokeView!
     override func viewDidLoad() {
         super.viewDidLoad()
         drawView.userInteractionEnabled = true
@@ -22,6 +23,7 @@ class ViewController: UIViewController, HandDrawViewDelegate {
     @IBAction func clearPressed(sender: AnyObject) {
         drawView.clear()
         strokeView.clear()
+        realTimeStrokeView.clear()
     }
 
     func handDrawViewStartSendRealTimeStrokeHeader(view: HandDrawView) {
@@ -37,6 +39,8 @@ class ViewController: UIViewController, HandDrawViewDelegate {
                                                     viewHeight: view.frame.height, strokeWidth: 1.5) {
             strokeView.appendPath(path)
         }
+
+        realTimeStrokeView.appendPoints(widthPoints)
     }
 }
 

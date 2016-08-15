@@ -115,7 +115,7 @@ class StrokeUtils {
             let x = point.x * viewWidth
             let y = point.y * viewHeight
             let width = point.width > 0 ? point.width * strokeWidth : strokeWidth
-            return WidthPoint(x: x, y: y, width: width)
+            return WidthPoint(x: x, y: y, width: width, timestamp: point.timestamp)
         }
         return fillPathForWidthPoints(widthPoints)
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		207B96641D616035007E09F9 /* RealTimeStrokeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B96631D616035007E09F9 /* RealTimeStrokeView.swift */; };
 		207C588B1D5352FB0084BE93 /* StrokeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207C588A1D5352FB0084BE93 /* StrokeView.swift */; };
 		20D34B591D5DBD6A003FFAA2 /* StrokeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D34B581D5DBD6A003FFAA2 /* StrokeUtils.swift */; };
 		20D34B5B1D5DBDA1003FFAA2 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D34B5A1D5DBDA1003FFAA2 /* CGPoint+Extensions.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		207B96631D616035007E09F9 /* RealTimeStrokeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeStrokeView.swift; sourceTree = "<group>"; };
 		207C588A1D5352FB0084BE93 /* StrokeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrokeView.swift; sourceTree = "<group>"; };
 		20D34B581D5DBD6A003FFAA2 /* StrokeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrokeUtils.swift; sourceTree = "<group>"; };
 		20D34B5A1D5DBDA1003FFAA2 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				20E6AEC91D4F33D500ECB002 /* Assets.xcassets */,
 				20E6AECB1D4F33D500ECB002 /* LaunchScreen.storyboard */,
 				20E6AECE1D4F33D500ECB002 /* Info.plist */,
+				207B96631D616035007E09F9 /* RealTimeStrokeView.swift */,
 			);
 			path = newDraw;
 			sourceTree = "<group>";
@@ -150,6 +153,7 @@
 				20D34B591D5DBD6A003FFAA2 /* StrokeUtils.swift in Sources */,
 				20E6AEC51D4F33D500ECB002 /* ViewController.swift in Sources */,
 				20E6AEC31D4F33D500ECB002 /* AppDelegate.swift in Sources */,
+				207B96641D616035007E09F9 /* RealTimeStrokeView.swift in Sources */,
 				207C588B1D5352FB0084BE93 /* StrokeView.swift in Sources */,
 				20D34B5B1D5DBDA1003FFAA2 /* CGPoint+Extensions.swift in Sources */,
 				20E6AED51D4F33F000ECB002 /* HandDrawView.swift in Sources */,

@@ -33,7 +33,7 @@ class RealTimeStrokeView: UIView {
     }
 
     override func drawRect(rect: CGRect) {
-        UIColor.blueColor().setFill()
+        UIColor.greenColor().setFill()
 
         fillPaths.forEach { (path) in
             path.fill()
@@ -111,16 +111,16 @@ class RealTimeStrokeView: UIView {
         if strokePoints.count == 2 {
             let firstPoint = strokePoints[0].point
             let secondPoint = strokePoints[1].point
-            let width = strokePoints[0].width * lineWidth
+            let width = strokePoints[0].width
             addSidePoints(forPoint: firstPoint, startPoint: firstPoint, endPoint: secondPoint, width: width, isLast: false)
         } else {
             let prePoint = strokePoints[count - 3].point
-            let width = strokePoints[count - 2].width * lineWidth
+            let width = strokePoints[count - 2].width
             addSidePoints(forPoint: midPoint, startPoint: prePoint, endPoint: lasPoint, width: width, isLast: false)
         }
 
         if isStrokeFinished {
-            let width = strokePoints[count - 1].width * lineWidth
+            let width = strokePoints[count - 1].width
             addSidePoints(forPoint: lasPoint, startPoint: midPoint, endPoint: lasPoint, width: width, isLast: true)
         }
     }

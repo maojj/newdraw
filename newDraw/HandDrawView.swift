@@ -36,7 +36,7 @@ struct WidthPoint {
 
 class HandDrawView: UIView {
     weak var delegate: HandDrawViewDelegate?
-    var strokeColor: UIColor = .blueColor()
+    var strokeColor: UIColor = .greenColor()
     var lineWidth: CGFloat = 1.5
 
     private var fillPath = UIBezierPath()
@@ -214,9 +214,20 @@ class HandDrawView: UIView {
     }
 
     private func strokeEnded() {
+        let count = strokePoints.count
+        if preIndex < count - 1 {
+            let points = strokePoints[preIndex..<count]
+            delegate?.handDrawView(self, willSendRealTimePoints: changePointsToRelativePoints(Array(points)))
+            preIndex = strokePoints.count
+            preTouchTime = currentTouchTime
+        }
+
         let relativePoints = changePointsToRelativePoints(strokePoints)
+
+
         clear()
-        delegate?.handDrawView(self, strokeEndedWithPoints: relativePoints)
+        self.delegate?.handDrawView(self, strokeEndedWithPoints: relativePoints)
+
     }
 
     private func changePointsToRelativePoints(points: [WidthPoint]) -> [WidthPoint] {

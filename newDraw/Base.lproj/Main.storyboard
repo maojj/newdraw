@@ -18,16 +18,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2iq-e8-s4R" customClass="StrokeView" customModule="newDraw" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="290" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ewE-0S-A7i" customClass="RealTimeStrokeView" customModule="newDraw" customModuleProvider="target">
-                                <rect key="frame" x="20" y="0.0" width="280" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="290" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Yi-Iu-1x7" customClass="StrokeView" customModule="newDraw" customModuleProvider="target">
-                                <rect key="frame" x="300" y="0.0" width="280" height="600"/>
+                                <rect key="frame" x="290" y="0.0" width="290" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WI3-wT-6LK" customClass="HandDrawView" customModule="newDraw" customModuleProvider="target">
-                                <rect key="frame" x="300" y="0.0" width="280" height="600"/>
+                                <rect key="frame" x="290" y="0.0" width="290" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZW-zd-9qG">
@@ -40,14 +44,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="2iq-e8-s4R" firstAttribute="centerY" secondItem="ewE-0S-A7i" secondAttribute="centerY" id="0ir-l3-oME"/>
                             <constraint firstItem="ewE-0S-A7i" firstAttribute="width" secondItem="4Yi-Iu-1x7" secondAttribute="width" id="4uA-cQ-Ama"/>
+                            <constraint firstItem="2iq-e8-s4R" firstAttribute="width" secondItem="ewE-0S-A7i" secondAttribute="width" id="7o9-Oi-yhy"/>
                             <constraint firstItem="NZW-zd-9qG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="K4y-vM-oKQ"/>
                             <constraint firstItem="4Yi-Iu-1x7" firstAttribute="leading" secondItem="ewE-0S-A7i" secondAttribute="trailing" id="Lg8-x1-ucE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4Yi-Iu-1x7" secondAttribute="trailing" id="MMg-oP-bWb"/>
                             <constraint firstItem="4Yi-Iu-1x7" firstAttribute="centerY" secondItem="ewE-0S-A7i" secondAttribute="centerY" id="Mz3-KG-woe"/>
                             <constraint firstItem="4Yi-Iu-1x7" firstAttribute="height" secondItem="WI3-wT-6LK" secondAttribute="height" id="UV1-sS-FrL"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="ewE-0S-A7i" secondAttribute="leading" id="XTG-ta-ikW"/>
+                            <constraint firstItem="2iq-e8-s4R" firstAttribute="height" secondItem="ewE-0S-A7i" secondAttribute="height" id="WJ9-Cl-sYd"/>
+                            <constraint firstAttribute="leading" secondItem="ewE-0S-A7i" secondAttribute="leading" id="XTG-ta-ikW"/>
                             <constraint firstItem="ewE-0S-A7i" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="b98-JI-TYf"/>
+                            <constraint firstItem="2iq-e8-s4R" firstAttribute="centerX" secondItem="ewE-0S-A7i" secondAttribute="centerX" id="iR9-iG-vqD"/>
                             <constraint firstItem="ewE-0S-A7i" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="jsP-BY-9qX"/>
                             <constraint firstItem="NZW-zd-9qG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="n3j-OU-fMf"/>
                             <constraint firstItem="4Yi-Iu-1x7" firstAttribute="width" secondItem="WI3-wT-6LK" secondAttribute="width" id="pT6-gL-dly"/>
@@ -59,6 +67,7 @@
                     <connections>
                         <outlet property="drawView" destination="WI3-wT-6LK" id="X0i-QM-54i"/>
                         <outlet property="realTimeStrokeView" destination="ewE-0S-A7i" id="WoY-E9-BgB"/>
+                        <outlet property="resultStrokeView" destination="2iq-e8-s4R" id="Q3L-y2-Tsu"/>
                         <outlet property="strokeView" destination="4Yi-Iu-1x7" id="ep5-FW-rih"/>
                     </connections>
                 </viewController>

@@ -24,7 +24,6 @@ class RealTimeStrokeView: UIView {
     private var firstPointDate: NSTimeInterval = 0
 
     func appendPoints(widthPoints: [WidthPoint]) {
-        clear()
         let points = widthPoints.map {
             return WidthPoint(x: $0.x * frame.width, y: $0.y * frame.height,
                 width: $0.width * lineWidth, timestamp: $0.timestamp)
@@ -62,7 +61,7 @@ class RealTimeStrokeView: UIView {
                                target: self,
                                selector: #selector(refreshTimerHandler),
                                userInfo: nil,
-                               repeats: false)
+                               repeats: true)
         NSRunLoop.mainRunLoop().addTimer(refreshTimer!, forMode: NSRunLoopCommonModes)
 
     }
@@ -89,6 +88,7 @@ class RealTimeStrokeView: UIView {
                 generateSidePointsForLastPoint(isLast)
             } else {
                 lastIndex = index - 1
+                break
             }
         }
 

@@ -27,11 +27,11 @@ class ViewController: UIViewController, HandDrawViewDelegate {
     }
 
     func handDrawViewStartSendRealTimeStrokeHeader(view: HandDrawView) {
-
+        realTimeStrokeView.clear()
     }
 
     func handDrawView(viwe: HandDrawView, willSendRealTimePoints widthPoints: [WidthPoint]) {
-
+        realTimeStrokeView.appendPoints(widthPoints)
     }
 
     func handDrawView(view: HandDrawView, strokeEndedWithPoints widthPoints: [WidthPoint]) {
@@ -40,7 +40,6 @@ class ViewController: UIViewController, HandDrawViewDelegate {
             strokeView.appendPath(path)
         }
 
-        realTimeStrokeView.appendPoints(widthPoints)
     }
 }
 

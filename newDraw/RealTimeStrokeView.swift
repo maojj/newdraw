@@ -33,7 +33,7 @@ class RealTimeStrokeView: UIView {
     }
 
     override func drawRect(rect: CGRect) {
-        UIColor.greenColor().setFill()
+        UIColor.blueColor().setFill()
 
         fillPaths.forEach { (path) in
             path.fill()

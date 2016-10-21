@@ -36,7 +36,7 @@ struct WidthPoint {
 
 class HandDrawView: UIView {
     weak var delegate: HandDrawViewDelegate?
-    var strokeColor: UIColor = .greenColor()
+    var strokeColor: UIColor = .blueColor()
     var lineWidth: CGFloat = 1.5
 
     private var fillPath = UIBezierPath()
